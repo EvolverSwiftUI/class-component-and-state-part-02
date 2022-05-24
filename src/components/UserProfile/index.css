@@ -1,0 +1,23 @@
+
+.user-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+}
+
+.user-details-container {
+    padding: 10px;
+}
+.user-name {
+    font-size: 22px;
+}
+
+.user-designation {
+    font-size: 12px;
+}
