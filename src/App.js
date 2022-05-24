@@ -2,27 +2,27 @@ import { Component } from 'react';
 import './App.css';
 import UserProfile from './components/UserProfile';
 
-const userDetailsList = [
+const initialUserDetailsList = [
   {
-    uniuqeNo: 1,
+    uniqueNo: 1,
     imageUrl: "https://picsum.photos/200",
     name: "Jhon Canedy",
     designation: "Software Engineer"
   },
   {
-    uniuqeNo: 2,
+    uniqueNo: 2,
     imageUrl: "https://picsum.photos/300",
     name: "Gooten Burg",
     designation: "iOS Engineer"
   },
   {
-    uniuqeNo: 3,
+    uniqueNo: 3,
     imageUrl: "https://picsum.photos/400",
     name: "Clinton JJ",
     designation: "Blockchain Engineer"
   },
   {
-    uniuqeNo: 4,
+    uniqueNo: 4,
     imageUrl: "https://picsum.photos/500",
     name: "Greg Preston",
     designation: "Full Stack Developer"
@@ -32,7 +32,7 @@ const userDetailsList = [
   class App extends Component {
     state = {
       searchInput: "",
-
+      userDetailsList: initialUserDetailsList,
     }
 
     onChangeSearchInput = (event) => {
@@ -41,8 +41,21 @@ const userDetailsList = [
       });
     }
 
+    onDeleteUser = (uniqueNo) => {
+      console.log(`uniqueNo - ${uniqueNo}`)
+      const {userDetailsList} = this.state;
+      const filteredUsersData = userDetailsList.filter(
+        each => each.uniqueNo !== uniqueNo
+      )
+
+      this.setState({
+        userDetailsList: filteredUsersData
+      })
+
+    }
+
     render() {
-      const {searchInput} = this.state;
+      const {searchInput, userDetailsList} = this.state;
       console.log(searchInput);
       const searchResults = userDetailsList.filter((eachUser) => {
         return eachUser.name.includes(searchInput);
@@ -58,7 +71,7 @@ const userDetailsList = [
           />
           <ul>
           {searchResults.map((eachItem) => (
-            <UserProfile userDetails={eachItem} key={eachItem.uniuqeNo}/>
+            <UserProfile userDetails={eachItem} key={eachItem.uniqueNo} deleteUser={this.onDeleteUser}/>
           ))}
           </ul>
         </div>

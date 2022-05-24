@@ -21,3 +21,8 @@
 .user-designation {
     font-size: 12px;
 }
+
+.delete-button {
+    height: 30px;
+    width: 30px;
+}
